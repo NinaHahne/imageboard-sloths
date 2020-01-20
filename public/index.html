@@ -1,10 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-</head>
-<body>
-    <script src="/js/vue.js"></script>
-    <script src="/js/axios.min.js"></script>
-</body>
+    <head>
+        <title>Ninas Imageboard</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link href="https://fonts.googleapis.com/css?family=Changa:400,600" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Ninas Imageboard</h1>
+            <h2>Latest Images</h2>
+        </header>
+        <div id="main">
+            <!-- <h1>{{title}}</h1>
+            <h2>{{heading}}</h2> -->
+            <section id='wrapper' v-if="images">
+                <div class="img-card" v-for="img in images">
+                    <div class="img-box">
+                        <img :src="img.url" :alt="img.title" />
+                    </div>
+                    <p>{{img.title}}</p>
+                </div>
+
+            </section>
+            <!-- <ul v-if="images">
+                <li v-for="img in images">
+                    <h3>{{img.title}}</h3>
+                    <img :src="img.url" :alt="img.title" />
+                </li>
+            </ul> -->
+        </div>
+        
+        <footer>Nina Hahne 2019</footer>
+
+        <script src="/js/vue.js"></script>
+        <script src="/js/axios.min.js"></script>
+        <script type="text/javascript" src="/js/script.js"></script>
+    </body>
 </html>
