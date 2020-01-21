@@ -4,6 +4,8 @@
         <title>Ninas Imageboard</title>
         <link rel="stylesheet" href="/styles.css" />
         <link href="https://fonts.googleapis.com/css?family=Changa:400,600" rel="stylesheet">
+        <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/frame-with-picture_1f5bc.png">
+        <!-- <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/openmoji/213/frame-with-picture_1f5bc.png"> -->
     </head>
     <body>
         <header>
@@ -11,6 +13,17 @@
             <h2>Latest Images</h2>
         </header>
         <div id="main">
+
+            <form>
+                <input type="text" v-model='title' name="title" placeholder="title">
+                <input type="text" v-model='description' name="description" placeholder="description">
+                <input type="text" v-model="username" name="username" placeholder="username">
+                <input type="file" @change='handleChange' name="file" accept='image/*'>
+                <!-- "image/* means: images with any extension -->
+                <button @click='handleClick'>submit</button>
+            </form>
+
+
             <!-- <h1>{{title}}</h1>
             <h2>{{heading}}</h2> -->
             <section id='wrapper' v-if="images">
@@ -29,7 +42,7 @@
                 </li>
             </ul> -->
         </div>
-        
+
         <footer>Nina Hahne 2019</footer>
 
         <script src="/js/vue.js"></script>
