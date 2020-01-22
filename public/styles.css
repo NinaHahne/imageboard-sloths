@@ -32,6 +32,22 @@ header {
     flex-grow: 1;
 }
 
+.component {
+    background-color: seagreen;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.fruit {
+    font-size: 100px;
+    display: inline-block;
+}
+.comment-box {
+    border: 2px black solid;
+}
+
 #wrapper {
     display: flex;
     align-items: flex-start;
