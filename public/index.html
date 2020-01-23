@@ -41,15 +41,17 @@
                 <button @click='handleClick'>submit</button>
             </form>
 
-
             <!-- <h1>{{title}}</h1>
             <h2>{{heading}}</h2> -->
             <section id='wrapper' v-if="images">
-                <div class="img-card" v-for="img in images" @click='selectedImage = img.id'>
-                    <div class="img-box">
-                        <img :src="img.url" :alt="img.title" />
-                    </div>
-                    <p>{{img.title}}</p>
+                <div class="img-card" v-for="img in images">
+                    <a :href="'#' + img.id">
+                        <div class="img-box">
+
+                            <img :src="img.url" :alt="img.title" />
+                        </div>
+                        <p>{{img.title}}</p>
+                    </a>
                 </div>
 
             </section>
@@ -60,6 +62,7 @@
                 </li>
             </ul> -->
             <!-- <first-component></first-component> -->
+            <button id="more" @click='showMore'>show more</button>
         </div>
 
 
@@ -86,7 +89,7 @@
 
                     <p><h2>{{imageData.title}}</h2><p>
                     <p>{{imageData.description}}</p>
-                    <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.created_at}}</span></p>
+                    <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
                 </div>
 
 
@@ -98,7 +101,7 @@
                 <div id="comments" v-if="comments">
                     <div class="comment-box" v-for="comment in comments">
                         <p>{{comment.comment}}</p>
-                        <p>{{comment.username}} on <span class='date-time'>{{comment.created_at}}</span></p>
+                        <p>{{comment.username}} on <span class='date-time'>{{comment.prettyDate}}</span></p>
                     </div>
                 </div>
 

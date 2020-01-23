@@ -49,16 +49,8 @@
                     axios
                         .get("./comments/" + vueComponent.id)
                         .then(function(res) {
-                            console.log('res.data: ', res.data);
+                            // console.log('res.data: ', res.data);
                             vueComponent.comments = res.data;
-                            var timeStamps =  document.getElementsByClassName('date-time');
-                            console.log('timeStamps.length: ', timeStamps.length);
-                            for (var i = 0; i < timeStamps.length; i++) {
-                                console.log('timeStamps[i].innerHTML: ', timeStamps[i].innerHTML);
-                                var formattedDate = moment(timeStamps[i].innerHTML).format('YYYY-MM-DD hh:mm a');
-                                console.log('formattedDate: ', formattedDate);
-                                timeStamps[i].innerHTML = formattedDate;
-                            }
                         })
                         .catch(function(err) {
                             console.log(
@@ -70,6 +62,17 @@
                 .catch(function(err) {
                     console.log("err in POST /comments/:", err);
                 });
+        },
+        watch: {
+            id: function() {
+                // in here we want to do exactly the same as we did in mounted
+                // copy paste or find a way to not repeat yourself
+
+                // the user tries to go to an image that doesn't exist
+                // we probaly want to look at the response from the server
+
+                // if the response is a certain thing... close the modal
+            }
         },
         methods: {
             handleClick: function(e) {
@@ -86,9 +89,9 @@
                     .then(function(res) {
                         console.log(
                             "response from POST /comment/:id: ",
-                            res.data[0]
+                            res.data
                         );
-                        vueInstance.comments.unshift(res.data[0]);
+                        vueInstance.comments.unshift(res.data);
                     })
                     .catch(function(err) {
                         console.log("err in POST /comment/:id: ", err);
@@ -98,10 +101,14 @@
                 console.log("sanity check click worked!");
                 // emits an event called close:
                 this.$emit("close", this.count);
+
+                location.hash = '';
+                // or (to also delete the empty hash in the url):
+                history.replaceState(null, null, ' ');
             }
         }
     });
-    
+
     new Vue({
         el: "#main",
         data: {
@@ -110,7 +117,7 @@
             description: "",
             username: "",
             file: null,
-            selectedImage: null
+            selectedImage: location.hash.slice(1)
             // selectedFruit: null,
             // fruits: [
             //     {
@@ -133,6 +140,9 @@
         mounted: function() {
             // console.log("mounted");
             var vueInstance = this;
+            addEventListener('hashchange', function() {
+                vueInstance.selectedImage = location.hash.slice(1);
+            });
             axios
                 .get("/images")
                 .then(function(res) {
@@ -140,7 +150,7 @@
                     vueInstance.images = res.data;
                 })
                 .catch(function(err) {
-                    console.log("err in mounted():", err);
+                    console.log("err in GET /images:", err);
                 });
         },
         methods: {
@@ -177,8 +187,24 @@
             handleChange: function(e) {
                 console.log("handleChange is running");
                 // file that we just uploaded:
-                console.log("file: ", e.target.files[0]);
+                // console.log("file: ", e.target.files[0]);
                 this.file = e.target.files[0];
+            },
+            showMore: function(e) {
+                e.preventDefault();
+                var lowestId = this.images[this.images.length - 1].id;
+                console.log('lowestId: ', lowestId);
+                var vueInstance = this;
+                axios
+                    .get("/moreimages/" + lowestId)
+                    .then(function(res) {
+                        console.log('vueInstance.images.length: ', vueInstance.images.length);
+                        console.log('res.data from GET /moreimages: ', res.data);
+                        vueInstance.images = vueInstance.images.concat(res.data);
+                    })
+                    .catch(function(err) {
+                        console.log("err in GET /moreimages:", err);
+                    });
             }
         },
         updated: function() {

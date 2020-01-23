@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+// const moment = require('moment');
 
-const { getImages, addImage, getImage, getComments, addComment } = require("./db");
+const { formatDateFromComments, formatDateFromPost } = require('./functions');
+
+const { getImages, getMoreImages, addImage, getImage, getComments, addComment } = require("./db");
 const s3 = require("./s3");
 const { s3Url } = require("./config");
 
@@ -45,12 +48,26 @@ app.get("/images", (req, res) => {
         });
 });
 
+app.get("/moreimages/:lowestId", (req, res) => {
+    console.log('req.params.lowestId in GET moreimages:', req.params.lowestId);
+    console.log('typeof req.params.lowestId:', typeof req.params.lowestId);
+    getMoreImages(req.params.lowestId)
+        .then(images => {
+            console.log('images in getMoreImages index.js: ', images);
+            res.json(images);
+        })
+        .catch(err => {
+            console.log("err in GET /moreimages: ", err);
+        });
+});
+
 app.get("/image/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
     getImage(req.params.id)
         .then(image => {
             // console.log("image: ", image[0]);
-            res.json(image[0]);
+            let imageWithPrettyDate = formatDateFromPost(image[0]);
+            res.json(imageWithPrettyDate);
         })
         .catch(err => {
             console.log("err in GET /image/:id: ", err);
@@ -61,8 +78,8 @@ app.get("/comments/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
     getComments(req.params.id)
         .then(comments => {
-            // console.log("comments: ", comments);
-            res.json(comments);
+            let commentsWithPrettyDates = formatDateFromComments(comments);
+            res.json(commentsWithPrettyDates);
         })
         .catch(err => {
             console.log("err in GET /comments/:id: ", err);
@@ -74,8 +91,9 @@ app.post("/comment/:id", (req, res) => {
     // console.log('req.body: ', req.body);
     addComment(req.body.comment, req.body.username, req.params.id)
         .then(comment => {
-            console.log("comment: ", comment);
-            res.json(comment);
+            // console.log("comment: ", comment);
+            let commentWithPrettyDate =  formatDateFromPost(comment[0]);
+            res.json(commentWithPrettyDate);
         })
         .catch(err => {
             console.log("err in POST /comment/:id: ", err);
