@@ -61,7 +61,7 @@ app.get("/comments/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
     getComments(req.params.id)
         .then(comments => {
-            console.log("comments: ", comments);
+            // console.log("comments: ", comments);
             res.json(comments);
         })
         .catch(err => {
@@ -71,7 +71,7 @@ app.get("/comments/:id", (req, res) => {
 
 app.post("/comment/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
-    console.log('req.body: ', req.body);
+    // console.log('req.body: ', req.body);
     addComment(req.body.comment, req.body.username, req.params.id)
         .then(comment => {
             console.log("comment: ", comment);

@@ -1,27 +1,28 @@
 (function() {
-    Vue.component("first-component", {
-        template: "#template",
-        props: ["postTitle", "id"],
-        // is called post-title in the index.html
-        data: function() {
-            return {
-                name: "Nina",
-                count: 0
-            };
-        },
-        mounted: function() {
-            console.log("component mounted:");
-            console.log("my postTitle: ", this.postTitle);
-            console.log("id: ", this.id);
-        },
-        methods: {
-            closeModal: function() {
-                console.log("sanity check click worked!");
-                // emits an event called close:
-                this.$emit("close", this.count);
-            }
-        }
-    });
+    // const moment = require("moment");
+    // Vue.component("first-component", {
+    //     template: "#template",
+    //     props: ["postTitle", "id"],
+    //     // is called post-title in the index.html
+    //     data: function() {
+    //         return {
+    //             name: "Nina",
+    //             count: 0
+    //         };
+    //     },
+    //     mounted: function() {
+    //         console.log("component mounted:");
+    //         console.log("my postTitle: ", this.postTitle);
+    //         console.log("id: ", this.id);
+    //     },
+    //     methods: {
+    //         closeModal: function() {
+    //             console.log("sanity check click worked!");
+    //             // emits an event called close:
+    //             this.$emit("close", this.count);
+    //         }
+    //     }
+    // });
     Vue.component("modal-component", {
         template: "#modal-template",
         props: ["id"],
@@ -33,13 +34,7 @@
                 imageData: [],
                 comment: "",
                 username: "",
-                comments: [
-                    {
-                        comment: "best image ever",
-                        username: "mr. sloth",
-                        created_at: "gerade eben"
-                    }
-                ]
+                comments: []
             };
         },
         mounted: function() {
@@ -56,6 +51,14 @@
                         .then(function(res) {
                             console.log('res.data: ', res.data);
                             vueComponent.comments = res.data;
+                            var timeStamps =  document.getElementsByClassName('date-time');
+                            console.log('timeStamps.length: ', timeStamps.length);
+                            for (var i = 0; i < timeStamps.length; i++) {
+                                console.log('timeStamps[i].innerHTML: ', timeStamps[i].innerHTML);
+                                var formattedDate = moment(timeStamps[i].innerHTML).format('YYYY-MM-DD hh:mm a');
+                                console.log('formattedDate: ', formattedDate);
+                                timeStamps[i].innerHTML = formattedDate;
+                            }
                         })
                         .catch(function(err) {
                             console.log(
@@ -98,6 +101,7 @@
             }
         }
     });
+    
     new Vue({
         el: "#main",
         data: {
@@ -106,22 +110,22 @@
             description: "",
             username: "",
             file: null,
-            selectedFruit: null,
-            selectedImage: null,
-            fruits: [
-                {
-                    title: "🥝",
-                    id: 1
-                },
-                {
-                    title: "🍓",
-                    id: 2
-                },
-                {
-                    title: "🍋",
-                    id: 3
-                }
-            ]
+            selectedImage: null
+            // selectedFruit: null,
+            // fruits: [
+            //     {
+            //         title: "🥝",
+            //         id: 1
+            //     },
+            //     {
+            //         title: "🍓",
+            //         id: 2
+            //     },
+            //     {
+            //         title: "🍋",
+            //         id: 3
+            //     }
+            // ]
         },
         created: function() {
             // console.log("created");
@@ -143,7 +147,7 @@
             closeMe: function(count) {
                 console.log("i need to close the modal", count);
                 // in here we can update the value of selectedFruit
-                this.selectedFruit = null;
+                // this.selectedFruit = null;
                 this.selectedImage = null;
             },
             handleClick: function(e) {
