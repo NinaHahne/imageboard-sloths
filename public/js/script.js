@@ -44,7 +44,11 @@
             axios
                 .get("/image/" + this.id)
                 .then(function(res) {
-                    // console.log("res.data in script.js: ", res.data);
+                    console.log("res.data.length in GET /image/id: ", res.data.length);
+                    if (res.data.length == 0) {
+                        vueComponent.$emit("close");
+                    }
+                    // is res.data empty??
                     vueComponent.imageData = res.data;
                     axios
                         .get("./comments/" + vueComponent.id)

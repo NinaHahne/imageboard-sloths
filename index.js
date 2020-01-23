@@ -53,7 +53,7 @@ app.get("/moreimages/:lowestId", (req, res) => {
     console.log('typeof req.params.lowestId:', typeof req.params.lowestId);
     getMoreImages(req.params.lowestId)
         .then(images => {
-            console.log('images in getMoreImages index.js: ', images);
+            // console.log('images in getMoreImages index.js: ', images);
             res.json(images);
         })
         .catch(err => {
@@ -65,9 +65,15 @@ app.get("/image/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
     getImage(req.params.id)
         .then(image => {
-            // console.log("image: ", image[0]);
-            let imageWithPrettyDate = formatDateFromPost(image[0]);
-            res.json(imageWithPrettyDate);
+            console.log("image from getImage(): ", image);
+            console.log('image.length', image.length);
+            if (image.length != 0) {
+                let imageWithPrettyDate = formatDateFromPost(image[0]);
+                res.json(imageWithPrettyDate);
+            } else {
+                console.log('no such image!');
+                res.json(image);
+            }
         })
         .catch(err => {
             console.log("err in GET /image/:id: ", err);
