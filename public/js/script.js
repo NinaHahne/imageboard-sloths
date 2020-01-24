@@ -80,7 +80,7 @@
                     });
             },
             closeModal: function() {
-                console.log("sanity check click worked!");
+                // console.log("sanity check click worked!");
                 // emits an event called close:
                 this.$emit("close", this.count);
 

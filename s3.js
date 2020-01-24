@@ -29,7 +29,7 @@ exports.upload = (req, res, next) => {
         ContentLength: size
     }).promise().then(
         () => {
-            console.log('it worked!');
+            // console.log('it worked!');
             next();
             // will delete file from upload folder(in our server), as soon as it is uploaded on AWS:
             fs.unlink(path, () => {});
