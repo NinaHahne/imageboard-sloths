@@ -1,28 +1,4 @@
 (function() {
-    // const moment = require("moment");
-    // Vue.component("first-component", {
-    //     template: "#template",
-    //     props: ["postTitle", "id"],
-    //     // is called post-title in the index.html
-    //     data: function() {
-    //         return {
-    //             name: "Nina",
-    //             count: 0
-    //         };
-    //     },
-    //     mounted: function() {
-    //         console.log("component mounted:");
-    //         console.log("my postTitle: ", this.postTitle);
-    //         console.log("id: ", this.id);
-    //     },
-    //     methods: {
-    //         closeModal: function() {
-    //             console.log("sanity check click worked!");
-    //             // emits an event called close:
-    //             this.$emit("close", this.count);
-    //         }
-    //     }
-    // });
     Vue.component("modal-component", {
         template: "#modal-template",
         props: ["id"],
@@ -38,47 +14,49 @@
             };
         },
         mounted: function() {
-            console.log("modal-component mounted:");
-            console.log("image id: ", this.id);
-            var vueComponent = this;
-            axios
-                .get("/image/" + this.id)
-                .then(function(res) {
-                    console.log("res.data.length in GET /image/id: ", res.data.length);
-                    if (res.data.length == 0) {
-                        vueComponent.$emit("close");
-                    }
-                    // is res.data empty??
-                    vueComponent.imageData = res.data;
-                    axios
-                        .get("./comments/" + vueComponent.id)
-                        .then(function(res) {
-                            // console.log('res.data: ', res.data);
-                            vueComponent.comments = res.data;
-                        })
-                        .catch(function(err) {
-                            console.log(
-                                "err in mounted in GET comments/id:",
-                                err
-                            );
-                        });
-                })
-                .catch(function(err) {
-                    console.log("err in POST /comments/:", err);
-                });
+            this.loadModal();
         },
         watch: {
             id: function() {
                 // in here we want to do exactly the same as we did in mounted
                 // copy paste or find a way to not repeat yourself
-
                 // the user tries to go to an image that doesn't exist
                 // we probaly want to look at the response from the server
-
                 // if the response is a certain thing... close the modal
+                this.loadModal();
             }
         },
         methods: {
+            loadModal: function() {
+                console.log("modal-component mounted:");
+                console.log("image id: ", this.id);
+                var vueComponent = this;
+                axios
+                    .get("/image/" + this.id)
+                    .then(function(res) {
+                        console.log("res.data.length in GET /image/id: ", res.data.length);
+                        if (res.data.length == 0) {
+                            vueComponent.$emit("close");
+                        }
+                        // is res.data empty??
+                        vueComponent.imageData = res.data;
+                        axios
+                            .get("./comments/" + vueComponent.id)
+                            .then(function(res) {
+                                // console.log('res.data: ', res.data);
+                                vueComponent.comments = res.data;
+                            })
+                            .catch(function(err) {
+                                console.log(
+                                    "err in mounted in GET comments/id:",
+                                    err
+                                );
+                            });
+                    })
+                    .catch(function(err) {
+                        console.log("err in POST /comments/:", err);
+                    });
+            },
             handleClick: function(e) {
                 // to make the button do not refresh the page:
                 e.preventDefault();
@@ -121,22 +99,8 @@
             description: "",
             username: "",
             file: null,
-            selectedImage: location.hash.slice(1)
-            // selectedFruit: null,
-            // fruits: [
-            //     {
-            //         title: "🥝",
-            //         id: 1
-            //     },
-            //     {
-            //         title: "🍓",
-            //         id: 2
-            //     },
-            //     {
-            //         title: "🍋",
-            //         id: 3
-            //     }
-            // ]
+            selectedImage: location.hash.slice(1),
+            showMoreButton: true
         },
         created: function() {
             // console.log("created");
@@ -196,6 +160,7 @@
             },
             showMore: function(e) {
                 e.preventDefault();
+                // find the id of the last shown image:
                 var lowestId = this.images[this.images.length - 1].id;
                 console.log('lowestId: ', lowestId);
                 var vueInstance = this;
@@ -212,7 +177,21 @@
             }
         },
         updated: function() {
-            // console.log("updated");
+            console.log("updated");
+            var vueInstance = this;
+            axios
+                .get("/firstId")
+                .then(function(firstId) {
+                    // console.log("firstId.data: ", firstId.data);
+                    vueInstance.firstId = firstId.data;
+                    // TO SUPPRESS THE MORE BUTTON: compare the id of the last image in your list to that of the first image in your database:
+                    if (firstId.data == vueInstance.images[vueInstance.images.length - 1].id) {
+                        vueInstance.showMoreButton = false;
+                    }
+                })
+                .catch(function(err) {
+                    console.log("err in GET /firstId:", err);
+                });
         }
     });
 })();

@@ -13,24 +13,11 @@
             <h2>Latest Images</h2>
         </header>
         <div id="main">
-            <!-- <first-component
-            v-if='selectedFruit'
-            post-title='My amazing article'
-            :id='selectedFruit'
-            @close='closeMe'
-            ></first-component> -->
-            <!-- post-title is called postTitle in the script.js -->
             <modal-component
             v-if='selectedImage'
             :id='selectedImage'
             @close='closeMe'
             ></modal-component>
-
-            <!-- <p
-            class="fruit"
-            v-for="fruit in fruits"
-            v-if="fruits.length"
-            @click='selectedFruit = fruit.id'>{{fruit.title}}</p> -->
 
             <form>
                 <input type="text" v-model='title' name="title" placeholder="title">
@@ -38,12 +25,12 @@
                 <input type="text" v-model="username" name="username" placeholder="username">
                 <input type="file" @change='handleChange' name="file" accept='image/*'>
                 <!-- "image/* means: images with any extension -->
-                <button @click='handleClick'>submit</button>
+                <button @click='handleClick'>Upload</button>
             </form>
 
             <!-- <h1>{{title}}</h1>
             <h2>{{heading}}</h2> -->
-            <section id='wrapper' v-if="images">
+            <section id='images' v-if="images">
                 <div class="img-card" v-for="img in images">
                     <a :href="'#' + img.id">
                         <div class="img-box">
@@ -55,27 +42,9 @@
                 </div>
 
             </section>
-            <!-- <ul v-if="images">
-                <li v-for="img in images">
-                    <h3>{{img.title}}</h3>
-                    <img :src="img.url" :alt="img.title" />
-                </li>
-            </ul> -->
-            <!-- <first-component></first-component> -->
-            <button id="more" @click='showMore'>show more</button>
-        </div>
+            <button id="more" @click='showMore' v-if='showMoreButton'>show more</button>
 
-
-        <!-- <script type="text/x-template" id="template">
-            <div class="component">
-                <div class="close-box" @click='closeModal'>
-                    <span id='closeX'>x</span>
-                </div>
-                <h1 @click='closeModal'>This is my first component</h1>
-                <h2>My name is: {{name}}</h2>
-                <button @click='count++'>Click me</button>Count: {{count}}
-            </div>
-        </script> -->
+        </div> <!--end of #main vue div -->
 
         <script type="text/x-template" id="modal-template">
             <div class="component">
@@ -104,9 +73,9 @@
                         <p>{{comment.username}} on <span class='date-time'>{{comment.prettyDate}}</span></p>
                     </div>
                 </div>
-
             </div>
         </script>
+
         <footer>Nina Hahne 2019</footer>
 
         <script src="/js/moment.js"></script>

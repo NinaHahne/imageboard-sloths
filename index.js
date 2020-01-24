@@ -1,10 +1,17 @@
 const express = require("express");
 const app = express();
-// const moment = require('moment');
 
-const { formatDateFromComments, formatDateFromPost } = require('./functions');
+const { formatDateFromComments, formatDateFromPost } = require("./functions");
 
-const { getImages, getMoreImages, addImage, getImage, getComments, addComment } = require("./db");
+const {
+    getImages,
+    getFirstImageId,
+    getMoreImages,
+    addImage,
+    getImage,
+    getComments,
+    addComment
+} = require("./db");
 const s3 = require("./s3");
 const { s3Url } = require("./config");
 
@@ -12,7 +19,6 @@ app.use(express.static("./public"));
 
 app.use(express.json());
 
-// copied from lesson notes: -----------------------------------------
 // ///////// BOILERPLATE CODE FOR IMAGE UPLOAD ///// DO NOT TOUCH /////////
 const multer = require("multer");
 const uidSafe = require("uid-safe");
@@ -44,13 +50,22 @@ app.get("/images", (req, res) => {
             res.json(images);
         })
         .catch(err => {
-            console.log("err in GET /images: ", err);
+            console.log("err in getImages() in GET /images: ", err);
+        });
+});
+
+app.get("/firstId", (req, res) => {
+    getFirstImageId()
+        .then(firstId => {
+            // console.log("first image id: ", firstId[0].id);
+            res.json(firstId[0].id);
+        })
+        .catch(err => {
+            console.log("err in getFirstImageId() in GET /images: ", err);
         });
 });
 
 app.get("/moreimages/:lowestId", (req, res) => {
-    console.log('req.params.lowestId in GET moreimages:', req.params.lowestId);
-    console.log('typeof req.params.lowestId:', typeof req.params.lowestId);
     getMoreImages(req.params.lowestId)
         .then(images => {
             // console.log('images in getMoreImages index.js: ', images);
@@ -65,13 +80,13 @@ app.get("/image/:id", (req, res) => {
     // console.log('req.params.id: ', req.params.id);
     getImage(req.params.id)
         .then(image => {
-            console.log("image from getImage(): ", image);
-            console.log('image.length', image.length);
+            // console.log("image from getImage(): ", image);
+            // console.log("image.length", image.length);
             if (image.length != 0) {
                 let imageWithPrettyDate = formatDateFromPost(image[0]);
                 res.json(imageWithPrettyDate);
             } else {
-                console.log('no such image!');
+                console.log("no such image!");
                 res.json(image);
             }
         })
@@ -98,7 +113,7 @@ app.post("/comment/:id", (req, res) => {
     addComment(req.body.comment, req.body.username, req.params.id)
         .then(comment => {
             // console.log("comment: ", comment);
-            let commentWithPrettyDate =  formatDateFromPost(comment[0]);
+            let commentWithPrettyDate = formatDateFromPost(comment[0]);
             res.json(commentWithPrettyDate);
         })
         .catch(err => {
@@ -124,18 +139,5 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             console.log("err in POST /upload", err);
         });
 });
-// app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
-//     console.log('file: ', req.file);
-//     console.log('text-input: ', req.body);
-//     if (req.file) {
-//         res.json({
-//             success: true
-//         });
-//     } else {
-//         res.json({
-//             success: false
-//         });
-//     }
-// });
 
 app.listen(8080, () => console.log("port 8080 listening!"));

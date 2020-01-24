@@ -10,9 +10,18 @@ exports.getImages = function() {
         .query(
             `SELECT * FROM images
             ORDER BY id DESC
-            LIMIT 3`
+            LIMIT 6`
         )
         .then(({ rows }) => rows);
+};
+
+exports.getFirstImageId = function () {
+    return db
+        .query(
+            `SELECT id FROM images
+            ORDER BY id ASC
+            LIMIT 1`
+        ).then(({ rows }) => rows);
 };
 
 exports.getMoreImages = function(lowestId) {
@@ -25,7 +34,7 @@ exports.getMoreImages = function(lowestId) {
             ) AS "lowestId" FROM images
             WHERE id < $1
             ORDER BY id DESC
-            LIMIT 3`,
+            LIMIT 6`,
             [lowestId]
         )
         .then(({ rows }) => rows).catch(err => {
