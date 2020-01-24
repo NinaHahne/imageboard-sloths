@@ -26,9 +26,32 @@ body {
 }
 
 header {
-    height: 120px;
+    display: flex;
+    height: 140px;
     padding: 20px 10px 10px 10px;
-    text-align: center;
+    justify-content: center;
+}
+
+header span {
+    transform: rotate(180deg);
+    font-size: 50px;
+    font-weight: bold;
+    /* text-decoration: underline;
+    text-decoration-color: rgb(82, 18, 7); */
+    border-bottom: 10px solid rgb(96, 21, 9);
+    height: 82px;
+    position: relative;
+    top: 12px;
+}
+
+header img {
+    height: 100%;
+    margin-left: -2px;
+}
+
+header div {
+    height: 100px;
+    width: 100px;
 }
 
 #main {
@@ -153,6 +176,14 @@ button:active {
     left: 0;
     overflow-y: scroll;
 }
+.close-box {
+    width: 450px;
+    text-align: right;
+    padding: 0 5px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 #img-card-wrapper {
     display: flex;
 }
