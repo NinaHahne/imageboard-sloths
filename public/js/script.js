@@ -6,11 +6,12 @@
         data: function() {
             return {
                 name: "Nina",
-                count: 0,
                 imageData: [],
                 comment: "",
                 username: "",
-                comments: []
+                comments: [],
+                previousId: null,
+                nextId: null
             };
         },
         mounted: function() {
@@ -38,8 +39,10 @@
                         if (res.data.length == 0) {
                             vueComponent.$emit("close");
                         }
-                        // is res.data empty??
                         vueComponent.imageData = res.data;
+                        console.log('looking for next and prevId: ', res.data);
+                        vueComponent.previousId = res.data.previousId;
+                        vueComponent.nextId = res.data.nextId;
                         axios
                             .get("./comments/" + vueComponent.id)
                             .then(function(res) {

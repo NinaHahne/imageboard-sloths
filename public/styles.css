@@ -40,6 +40,10 @@ header {
 }
 
 /* ******** inputs & buttons *********** */
+a {
+    text-decoration: none;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -96,6 +100,13 @@ button:hover {
 button:active {
   transform: translateY(3px);
 }
+
+#left a, #right a {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
 /* ******** images *********** */
 #images {
     display: flex;
@@ -134,7 +145,6 @@ button:active {
     background-color: rgba(210, 250, 136, 0.8);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
@@ -143,6 +153,10 @@ button:active {
     left: 0;
     overflow-y: scroll;
 }
+#img-card-wrapper {
+    display: flex;
+}
+
 .component .img-box {
     width: 450px;
     height: 350px;

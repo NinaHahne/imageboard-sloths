@@ -47,12 +47,6 @@
                         <p>{{img.title}}</p>
                     </a>
                 </div>
-<div id="left">
-    <a v-if='previousId':href="'#' + previousId"><</a>
-</div>
-<div id="right">
-    <a v-if='nextId':href="'#' + nextId"><</a>
-</div>
             </section>
             <button id="more" @click='showMore' v-if='showMoreButton'>show more</button>
         </div> <!--end of #main vue div -->
@@ -63,6 +57,9 @@
                 </div>
                 <div id="img-card-wrapper">
 
+                    <div id="left">
+                        <a v-if='previousId':href="'#' + previousId"><</a>
+                    </div>
                     <div class="img-card">
                         <div class="img-box">
                             <img :src='imageData.url' :alt='imageData.title'>
@@ -70,6 +67,9 @@
                         <p><h2>{{imageData.title}}</h2><p>
                         <p>{{imageData.description}}</p>
                         <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
+                    </div>
+                    <div id="right">
+                        <a v-if='nextId':href="'#' + nextId">></a>
                     </div>
 
                 </div>

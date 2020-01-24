@@ -53,10 +53,31 @@ exports.addImage = function(url, username, title, description) {
         .then(({ rows }) => rows);
 };
 
+// exports.getImage = function(id) {
+//     return db
+//         .query(
+//             `SELECT * FROM images
+//             WHERE id= $1`,
+//             [id]
+//         )
+//         .then(({ rows }) => rows);
+// };
+
 exports.getImage = function(id) {
     return db
         .query(
-            `SELECT * FROM images
+            `SELECT *, (
+                SELECT id FROM images
+                WHERE id > $1
+                ORDER BY id ASC
+                LIMIT 1
+            ) AS "previousId",  (
+                SELECT id FROM images
+                WHERE id < $1
+                ORDER BY id DESC
+                LIMIT 1
+            ) AS "nextId"
+            FROM images
             WHERE id= $1`,
             [id]
         )
