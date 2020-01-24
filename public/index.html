@@ -10,7 +10,6 @@
     <body>
         <header>
             <h1>Ninas Imageboard</h1>
-            <h2>Latest Images</h2>
         </header>
         <div id="main">
             <modal-component
@@ -20,19 +19,27 @@
             ></modal-component>
 
             <form>
-                <input type="text" v-model='title' name="title" placeholder="title">
-                <input type="text" v-model='description' name="description" placeholder="description">
-                <input type="text" v-model="username" name="username" placeholder="username">
-                <input type="file" @change='handleChange' name="file" accept='image/*'>
-                <!-- "image/* means: images with any extension -->
-                <button @click='handleClick'>Upload</button>
+                <div class="formA">
+                    <input id="title" class="input"  type="text" v-model='title' name="title" placeholder="title">
+                    <input id="description" class="input" type="text" v-model='description' name="description" placeholder="description">
+                    <input id="username" class="input" type="text" v-model="username" name="username" placeholder="username">
+                    <button @click='handleClick'>Upload</button>
+                </div>
+
+                <div class="formB">
+                    <input id="file" type="file" @change='handleChange' name="file" accept='image/*'>
+                    <!-- "image/* means: images with any extension -->
+                </div>
             </form>
 
+            <div class="heading">
+                <h2>Latest Images</h2>
+            </div>
             <!-- <h1>{{title}}</h1>
             <h2>{{heading}}</h2> -->
             <section id='images' v-if="images">
-                <div class="img-card" v-for="img in images">
-                    <a :href="'#' + img.id">
+                <div v-for="img in images">
+                    <a class="img-card" :href="'#' + img.id">
                         <div class="img-box">
 
                             <img :src="img.url" :alt="img.title" />
@@ -40,25 +47,31 @@
                         <p>{{img.title}}</p>
                     </a>
                 </div>
-
+<div id="left">
+    <a v-if='previousId':href="'#' + previousId"><</a>
+</div>
+<div id="right">
+    <a v-if='nextId':href="'#' + nextId"><</a>
+</div>
             </section>
             <button id="more" @click='showMore' v-if='showMoreButton'>show more</button>
-
         </div> <!--end of #main vue div -->
-
         <script type="text/x-template" id="modal-template">
             <div class="component">
                 <div class="close-box" @click='closeModal'>
                     <span id='closeX'>x</span>
                 </div>
-                <div class="img-card">
-                    <div class="img-box">
-                        <img :src='imageData.url' :alt='imageData.title'>
+                <div id="img-card-wrapper">
+
+                    <div class="img-card">
+                        <div class="img-box">
+                            <img :src='imageData.url' :alt='imageData.title'>
+                        </div>
+                        <p><h2>{{imageData.title}}</h2><p>
+                        <p>{{imageData.description}}</p>
+                        <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
                     </div>
 
-                    <p><h2>{{imageData.title}}</h2><p>
-                    <p>{{imageData.description}}</p>
-                    <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
                 </div>
 
 

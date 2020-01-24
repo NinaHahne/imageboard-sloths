@@ -2,6 +2,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Changa', sans-serif;
+    color: rgb(1, 56, 56);
 }
 
 html {
@@ -13,19 +14,21 @@ body {
     /* width: 100vw; */
     display: flex;
     flex-direction: column;
+    background-color: snow;
     /* background: linear-gradient(
     to bottom,
     mediumaquamarine,
     snow,
     snow
     ); */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     overflow-x: hidden;
 }
 
 header {
     height: 120px;
     padding: 20px 10px 10px 10px;
+    text-align: center;
 }
 
 #main {
@@ -35,6 +38,65 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+/* ******** inputs & buttons *********** */
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formA {
+    margin-bottom: 10px;
+}
+
+.formB {
+    width: 100%;
+}
+
+.input {
+    background-color: rgb(210, 250, 136);
+    color: rgb(1, 56, 56);
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 3px 6px;
+    border: none;
+    font-family: 'Changa', sans-serif;
+}
+.input:hover {
+    box-shadow: inset 0px 0px 0px 3px rgb(1, 56, 56);
+}
+.input:focus {
+    outline: none;
+}
+
+button {
+    background-color: rgb(210, 250, 136);
+    color: rgb(1, 56, 56);
+    font-size: 18px;
+    border: 2px rgb(1, 56, 56) solid;
+    border-radius: 12px;
+    font-family: 'Changa', sans-serif;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+button:focus, button:hover {
+    outline: none;
+    background-color: rgb(1, 56, 56);
+    color: rgb(210, 250, 136);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+  transform: translateY(3px);
+}
+/* ******** images *********** */
 #images {
     display: flex;
     align-items: flex-start;
@@ -46,11 +108,12 @@ header {
     margin: 0 10px;
 }
 
-.img-card > a{
+.img-card {
     display: flex;
     flex-direction: column;
     margin: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 .img-box {
@@ -66,14 +129,14 @@ header {
     width: 100%;
     object-fit: cover;
 }
-/* ************** modal ********************* */
+/* ************** modal **************** */
 .component {
     background-color: rgba(210, 250, 136, 0.8);
     display: flex;
     flex-direction: column;
-    position: fixed;
     justify-content: center;
     align-items: center;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -84,14 +147,10 @@ header {
     width: 450px;
     height: 350px;
 }
-/* .fruit {
-font-size: 100px;
-display: inline-block;
-} */
 .comment-box {
-    border: 2px black solid;
+    border: 2px rgb(1, 56, 56) solid;
 }
-/* ******************************************* */
+/* ************************************** */
 
 footer {
     height: 30px;
