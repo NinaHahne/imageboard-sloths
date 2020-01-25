@@ -38,7 +38,7 @@
             </form>
 
             <div class="heading">
-                <h2>Latest Images</h2>
+                <h1>Latest Images</h1>
             </div>
             <!-- <h1>{{title}}</h1>
             <h2>{{heading}}</h2> -->
@@ -55,13 +55,16 @@
             </section>
             <button id="more" @click='showMore' v-if='showMoreButton'>show more</button>
         </div> <!--end of #main vue div -->
+
+        <!-- modal: -->
         <script type="text/x-template" id="modal-template">
             <div class="component">
+
                 <div class="close-box" @click='closeModal'>
                     <span id='closeX'>x</span>
                 </div>
-                <div id="img-card-wrapper">
 
+                <div id="img-card-wrapper">
                     <div id="left">
                         <a v-if='previousId':href="'#' + previousId"><</a>
                     </div>
@@ -69,31 +72,34 @@
                         <div class="img-box">
                             <img :src='imageData.url' :alt='imageData.title'>
                         </div>
-                        <p><h2>{{imageData.title}}</h2><p>
-                        <p>{{imageData.description}}</p>
-                        <p>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
+                        <p class="m-title"><h2>{{imageData.title}}</h2><p>
+                        <p class="m-desc">{{imageData.description}}</p>
+                        <p class='uploaded'>Uploaded by {{imageData.username}} on <span class='date-time'>{{imageData.prettyDate}}</span></p>
                     </div>
                     <div id="right">
                         <a v-if='nextId':href="'#' + nextId">></a>
                     </div>
 
                 </div>
-
-
+                <div class="heading">
+                    <h3>Add a Comment:</h3>
+                </div>
                 <div id="comment-input">
-                    <input type="text" v-model='comment' name="comment" placeholder="comment">
-                    <input type="text" v-model="username" name="username" placeholder="username">
+                    <input type="text" class="input" v-model='comment' name="comment" placeholder="comment">
+                    <input type="text" class="input" v-model="username" name="username" placeholder="username">
                     <button @click='handleClick'>submit</button>
                 </div>
                 <div id="comments" v-if="comments">
                     <div class="comment-box" v-for="comment in comments">
                         <p>{{comment.comment}}</p>
-                        <p>{{comment.username}} on <span class='date-time'>{{comment.prettyDate}}</span></p>
+                        <p class='uploaded'>{{comment.username}} on <span class='date-time' >{{comment.prettyDate}}</span></p>
                     </div>
                 </div>
             </div>
         </script>
-
+        <!-- <p>
+            Source : <a title="PNG Jungle Leaf" href="http://pluspng.com/png-jungle-leaf-2695.html">PNG Jungle Leaf</a>
+        </p> -->
         <footer>Nina Hahne 2019</footer>
 
         <script src="/js/moment.js"></script>

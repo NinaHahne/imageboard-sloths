@@ -14,21 +14,24 @@ body {
     /* width: 100vw; */
     display: flex;
     flex-direction: column;
-    background-color: snow;
-    /* background: linear-gradient(
-    to bottom,
-    mediumaquamarine,
-    snow,
-    snow
-    ); */
+    background-color: rgba(199, 231, 235, 0.4);
     /* background-attachment: fixed; */
     overflow-x: hidden;
+    background-image: url("images/http___pluspng.com_img-png_png-jungle-leaf-extreme-swing-excursion-punta-cana-bavaro-dominican-republic-great-excursion-tour-for-the-whole-family-855.png");
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
 }
 
 header {
     display: flex;
-    height: 140px;
-    padding: 20px 10px 10px 10px;
+    height: 188px;
+    padding: 67px 10px 10px 10px;
     justify-content: center;
 }
 
@@ -90,9 +93,10 @@ form {
     padding: 3px 6px;
     border: none;
     font-family: 'Changa', sans-serif;
+    margin-right: 10px;
 }
 .input:hover {
-    box-shadow: inset 0px 0px 0px 3px rgb(1, 56, 56);
+    box-shadow: inset 0px 0px 0px 2px rgb(1, 56, 56);
 }
 .input:focus {
     outline: none;
@@ -150,6 +154,11 @@ button:active {
     justify-content: center;
 }
 
+#images .img-card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .img-box {
     border: 2px rgb(1, 56, 56) solid;
     border-radius: 15px;
@@ -165,7 +174,7 @@ button:active {
 }
 /* ************** modal **************** */
 .component {
-    background-color: rgba(210, 250, 136, 0.8);
+    background-color: rgba(220, 242, 178, 0.9);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -177,11 +186,15 @@ button:active {
     overflow-y: scroll;
 }
 .close-box {
-    width: 450px;
+    width: 100%;
     text-align: right;
-    padding: 0 5px;
+    padding: 0 25px;
     font-size: 30px;
     font-weight: bold;
+}
+
+#closeX:hover {
+    cursor: pointer;
 }
 
 #img-card-wrapper {
@@ -189,11 +202,40 @@ button:active {
 }
 
 .component .img-box {
-    width: 450px;
-    height: 350px;
+    width: 500px;
+    height: 400px;
 }
+
+.m-desc {
+    font-weight:normal;
+    font-size: 20px;
+}
+
+.uploaded {
+    font-style: italic;
+}
+
+#comment-input, #comments {
+    width: 60%;
+    max-width: 650px;
+    min-width: 450px;
+}
+
+#comment-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap:  wrap;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
 .comment-box {
     border: 2px rgb(1, 56, 56) solid;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
 }
 /* ************************************** */
 
