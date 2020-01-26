@@ -30,19 +30,19 @@ body {
 
 header {
     display: flex;
-    height: 188px;
+    height: 194px;
     padding: 67px 10px 10px 10px;
     justify-content: center;
 }
 
 header span {
     transform: rotate(180deg);
-    font-size: 50px;
-    font-weight: bold;
-    /* text-decoration: underline;
-    text-decoration-color: rgb(82, 18, 7); */
+    font-size: 70px;
+    /* font-weight: bold; */
+    color: rgb(142, 110, 105);
+    text-shadow: 0px 0px 20px rgb(199, 231, 235);
     border-bottom: 10px solid rgb(96, 21, 9);
-    height: 82px;
+    height: 115px;
     position: relative;
     top: 12px;
 }
@@ -83,12 +83,14 @@ form {
 
 .formB {
     width: 100%;
+    /* text-align: center; */
+    padding-left: 10px;
 }
 
 .input {
     background-color: rgb(210, 250, 136);
     color: rgb(1, 56, 56);
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 6px;
     padding: 3px 6px;
     border: none;
@@ -143,7 +145,7 @@ button:active {
     justify-content: center;
     /* justify-content: space-around; */
     width: 100%;
-    margin: 0 10px;
+    padding: 0 10%;
 }
 
 .img-card {
@@ -197,6 +199,13 @@ button:active {
     cursor: pointer;
 }
 
+#left, #right {
+    position: relative;
+    top: 180px;
+    width: 24px;
+    height: 45px;
+}
+
 #img-card-wrapper {
     display: flex;
 }
@@ -204,6 +213,7 @@ button:active {
 .component .img-box {
     width: 500px;
     height: 400px;
+    margin-bottom: 10px;
 }
 
 .m-desc {
@@ -213,6 +223,8 @@ button:active {
 
 .uploaded {
     font-style: italic;
+    font-size: 16px;
+    margin-top: 6px;
 }
 
 #comment-input, #comments {
@@ -228,6 +240,10 @@ button:active {
     flex-wrap:  wrap;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+.comment {
+    font-size: 18px;
 }
 
 .comment-box {

@@ -81,17 +81,17 @@
                     </div>
 
                 </div>
-                <div class="heading">
+                <!-- <div class="heading">
                     <h3>Add a Comment:</h3>
-                </div>
+                </div> -->
                 <div id="comment-input">
-                    <input type="text" class="input" v-model='comment' name="comment" placeholder="comment">
+                    <input type="text" class="input" v-model='comment' name="comment" placeholder="add a comment">
                     <input type="text" class="input" v-model="username" name="username" placeholder="username">
                     <button @click='handleClick'>submit</button>
                 </div>
                 <div id="comments" v-if="comments">
                     <div class="comment-box" v-for="comment in comments">
-                        <p>{{comment.comment}}</p>
+                        <p class="comment">{{comment.comment}}</p>
                         <p class='uploaded'>{{comment.username}} on <span class='date-time' >{{comment.prettyDate}}</span></p>
                     </div>
                 </div>
