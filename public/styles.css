@@ -17,7 +17,7 @@ body {
     background-color: rgba(199, 231, 235, 0.4);
     /* background-attachment: fixed; */
     overflow-x: hidden;
-    background-image: url("images/http___pluspng.com_img-png_png-jungle-leaf-extreme-swing-excursion-punta-cana-bavaro-dominican-republic-great-excursion-tour-for-the-whole-family-855.png");
+    background-image: url("/images/http___pluspng.com_img-png_png-jungle-leaf-extreme-swing-excursion-punta-cana-bavaro-dominican-republic-great-excursion-tour-for-the-whole-family-855.png");
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -31,7 +31,7 @@ body {
 header {
     display: flex;
     flex-direction: column;
-    height: 194px;
+    height: 183px;
     /* justify-content: center; */
     align-items: center;
 }
@@ -43,7 +43,7 @@ header {
 }
 
 .headerA {
-    height: 70px;
+    height: 53px;
 }
 
 .headerB {
@@ -54,16 +54,20 @@ header {
     border-left: 16px solid rgb(96, 21, 9);
     border-bottom: 10px solid rgb(96, 21, 9);
     border-radius: 0px 0px 0px 100px;
-    height: 92px;
-    width: 380px;
+    height: 100px;
+    width: 250px;
+    margin-top: -25px;
+    flex-shrink: 0;
 }
 
 .fill {
-    height: 92px;
-    width: 380px;
+    height: 100px;
+    width: 250px;
+    margin-top: -25px;
+    flex-shrink: 0;
 }
 
-header span {
+.headerB span {
     transform: rotate(180deg);
     font-size: 70px;
     /* font-weight: bold; */
@@ -106,13 +110,16 @@ form {
 }
 
 .formA {
+    display: flex;
+    justify-content: space-around;
     margin-bottom: 10px;
 }
 
 .formB {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    /* text-align: center; */
-    padding-left: 10px;
+    padding: 0 12px;
 }
 
 .input {

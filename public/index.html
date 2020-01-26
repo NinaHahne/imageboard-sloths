@@ -3,6 +3,7 @@
     <head>
         <title>Imageboard</title>
         <link rel="stylesheet" href="/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Changa:400,600" rel="stylesheet">
         <!-- <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/frame-with-picture_1f5bc.png"> -->
         <!-- <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/openmoji/213/frame-with-picture_1f5bc.png"> -->
@@ -11,12 +12,9 @@
     <body>
         <header>
             <div class="headerA">
-                <div class="perch">
-
-                </div>
-                <div class="fill">
-
-                </div>
+                <div class="perch"></div>
+                <div class="fill"></div>
+                <div class="fill"></div>
             </div>
             <div class="headerB">
                 <span>&nbsp&nbsp&nbspImageboard</span>
@@ -38,12 +36,12 @@
                     <input id="title" class="input"  type="text" v-model='title' name="title" placeholder="title">
                     <input id="description" class="input" type="text" v-model='description' name="description" placeholder="description">
                     <input id="username" class="input" type="text" v-model="username" name="username" placeholder="username">
-                    <button @click='handleClick'>Upload Sloth</button>
                 </div>
 
                 <div class="formB">
                     <input id="file" type="file" @change='handleChange' name="file" accept='image/*'>
                     <!-- "image/* means: images with any extension -->
+                    <button @click='handleClick'>Upload Sloth</button>
                 </div>
             </form>
 
