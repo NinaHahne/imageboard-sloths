@@ -10,9 +10,19 @@
     </head>
     <body>
         <header>
-            <span>&nbsp&nbsp&nbspImageboard</span>
-            <div class="logo">
-                <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/sloth_1f9a5.png" alt="sloth">
+            <div class="headerA">
+                <div class="perch">
+
+                </div>
+                <div class="fill">
+
+                </div>
+            </div>
+            <div class="headerB">
+                <span>&nbsp&nbsp&nbspImageboard</span>
+                <div class="logo">
+                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/sloth_1f9a5.png" alt="sloth">
+                </div>
             </div>
 
         </header>
@@ -28,7 +38,7 @@
                     <input id="title" class="input"  type="text" v-model='title' name="title" placeholder="title">
                     <input id="description" class="input" type="text" v-model='description' name="description" placeholder="description">
                     <input id="username" class="input" type="text" v-model="username" name="username" placeholder="username">
-                    <button @click='handleClick'>Upload</button>
+                    <button @click='handleClick'>Upload Sloth</button>
                 </div>
 
                 <div class="formB">
@@ -53,7 +63,7 @@
                     </a>
                 </div>
             </section>
-            <button id="more" @click='showMore' v-if='showMoreButton'>show more</button>
+            <button id="more" @click='showMore' v-if='showMoreButton'>More Sloths</button>
         </div> <!--end of #main vue div -->
 
         <!-- modal: -->
@@ -100,7 +110,7 @@
         <!-- <p>
             Source : <a title="PNG Jungle Leaf" href="http://pluspng.com/png-jungle-leaf-2695.html">PNG Jungle Leaf</a>
         </p> -->
-        <footer>Nina Hahne 2019</footer>
+        <footer>Nina Hahne 2020</footer>
 
         <script src="/js/moment.js"></script>
         <script src="/js/vue.js"></script>

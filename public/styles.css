@@ -30,9 +30,37 @@ body {
 
 header {
     display: flex;
+    flex-direction: column;
     height: 194px;
-    padding: 67px 10px 10px 10px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.headerA, .headerB {
+    display: flex;
     justify-content: center;
+    width: 100%;
+}
+
+.headerA {
+    height: 70px;
+}
+
+.headerB {
+    height: 120px;
+}
+
+.perch {
+    border-left: 16px solid rgb(96, 21, 9);
+    border-bottom: 10px solid rgb(96, 21, 9);
+    border-radius: 0px 0px 0px 100px;
+    height: 92px;
+    width: 380px;
+}
+
+.fill {
+    height: 92px;
+    width: 380px;
 }
 
 header span {
@@ -47,15 +75,15 @@ header span {
     top: 12px;
 }
 
-header img {
+.logo {
+    height: 100px;
+    width: 100px;
+}
+.logo img {
     height: 100%;
     margin-left: -2px;
 }
 
-header div {
-    height: 100px;
-    width: 100px;
-}
 
 #main {
     display: flex;
