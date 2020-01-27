@@ -17,7 +17,7 @@
                 <div class="fill"></div>
             </div>
             <div class="headerB">
-                <span>&nbsp&nbsp&nbspImageboard</span>
+                <span>&nbsp&nbspImageboard</span>
                 <div class="logo">
                     <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/233/sloth_1f9a5.png" alt="sloth">
                 </div>
@@ -33,15 +33,15 @@
 
             <form>
                 <div class="formA">
-                    <input id="title" class="input"  type="text" v-model='title' name="title" placeholder="title">
-                    <input id="description" class="input" type="text" v-model='description' name="description" placeholder="description">
-                    <input id="username" class="input" type="text" v-model="username" name="username" placeholder="username">
+                    <input id="title" class="input" type="text" v-model='title' name="title" placeholder="title" autocomplete="off">
+                    <input id="description" class="input" type="text" v-model='description' name="description" placeholder="description" autocomplete="off">
+                    <input id="username" class="input" type="text" v-model="username" name="username" placeholder="username" autocomplete="off">
                 </div>
 
                 <div class="formB">
                     <input id="file" type="file" @change='handleChange' name="file" accept='image/*'>
                     <!-- "image/* means: images with any extension -->
-                    <button @click='handleClick'>Upload Sloth</button>
+                    <button @click='handleClick'>Upload&nbspSloth</button>
                 </div>
             </form>
 
@@ -93,8 +93,8 @@
                     <h3>Add a Comment:</h3>
                 </div> -->
                 <div id="comment-input">
-                    <input type="text" class="input" v-model='comment' name="comment" placeholder="add a comment">
-                    <input type="text" class="input" v-model="username" name="username" placeholder="username">
+                    <input type="text" class="input" v-model='comment' name="comment" placeholder="add a comment" autocomplete="off">
+                    <input type="text" class="input" v-model="username" name="username" placeholder="username" autocomplete="off">
                     <button @click='handleClick'>submit</button>
                 </div>
                 <div id="comments" v-if="comments">

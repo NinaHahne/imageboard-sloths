@@ -1,3 +1,6 @@
+// to do:
+// empty input fields after submitting (main and modal)
+// layout for mobile
 (function() {
     Vue.component("modal-component", {
         template: "#modal-template",
@@ -68,6 +71,9 @@
                     comment: this.comment,
                     username: this.username
                 };
+                this.comment = "";
+                this.username = "";
+
                 var vueInstance = this;
                 axios
                     .post("./comment/" + this.id, commentData)
@@ -144,6 +150,11 @@
                 formData.append("file", this.file);
                 // will only log an empty object, but the data is actually in there:
                 // console.log('formData: ', formData);
+                this.title = "";
+                this.description = "";
+                this.username = "";
+                this.file = null;
+
                 var vueInstance = this;
                 axios
                     .post("./upload", formData)
