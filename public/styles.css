@@ -320,12 +320,14 @@ footer {
         border-radius: 0px 0px 0px 100px;
         height: 70px;
         /* width: 140px; */
-        width: 40%;
+        /* width: 40%; */
+        width: 100px;
     }
     .fill {
         height: 70px;
         /* width: 130px; */
-        width: 30%;
+        /* width: 30%; */
+        width: 139.5px
     }
     .headerB span {
         font-size: 34px;
