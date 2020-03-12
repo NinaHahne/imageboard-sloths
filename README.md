@@ -1,5 +1,5 @@
-# Imageboard - Galery of Sloths
-Instagram-like galery built with Vue.js
+# Imageboard - Gallery of Sloths
+Instagram-like gallery built with Vue.js
 
 ## Features
 * Allows users to upload images along with a title and a
@@ -13,6 +13,6 @@ PostgreSQL, AWS
 
 ## Preview
 
-### GALERY / OVERVIEW
+### GALLERY / OVERVIEW
 
-<img src="./public/preview/imageboard_galery.gif" alt="galery preview animation">
+<img src="./public/preview/imageboard_gallery.gif" alt="gallery preview animation">
