@@ -16,3 +16,11 @@ PostgreSQL, AWS
 ### GALLERY / OVERVIEW
 
 <img src="./public/preview/imageboard_gallery.gif" alt="gallery preview animation">
+
+### IMAGE UPLOAD
+
+<img src="./public/preview/imageboard_upload.gif" alt="upload preview animation">
+
+### LEAVE COMMENTS
+
+<img src="./public/preview/imageboard_comment.gif" alt="comment preview animation">
